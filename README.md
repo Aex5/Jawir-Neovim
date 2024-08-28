@@ -13,11 +13,11 @@ Starter config for Jawir Nvim
 - Linux :
 
 ```bash
-git clone https://github.com/pojokcodeid/NvChad-v2-config.git ~/.config/nvim
+git clone https://github.com/Aex5/Jawir-Neovim.git ~/.config/nvim
 ```
 
 - Windows
 
 ```pwsh
-git clone https://github.com/pojokcodeid/NvChad-v2-config.git "$env:LOCALAPPDATA\nvim"
+git clone https://github.com/Aex5/Jawir-Neovim.git "$env:LOCALAPPDATA\nvim"
 ```
