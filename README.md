@@ -1,10 +1,10 @@
 # starter
 
-Starter config for NvChad
+Starter config for Jawir Nvim
  
 ## HOME
 
-![home!](img/home.png)
+![home!](img/home2.png)
 
 ## CODE
 
