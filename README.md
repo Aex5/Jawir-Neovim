@@ -1,7 +1,7 @@
 # starter
 
 Starter config for NvChad
-
+ 
 ## HOME
 
 ![home!](img/home.png)
