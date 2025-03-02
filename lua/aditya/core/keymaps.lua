@@ -25,5 +25,20 @@ keymap.set("n", "<S-x>", "<cmd>tabclose<CR>", { desc = "Close current tab" }) --
 keymap.set("n", "<leader>to", "<cmd>tabnew<CR>", { desc = "Open new tab" })
 keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" })
 
+vim.api.nvim_create_user_command('TabSelect', function()
+    local tabs = {}
+    for i = 1, vim.fn.tabpagenr('$') do
+        local buf = vim.fn.bufname(vim.fn.tabpagebuflist(i)[1])
+        table.insert(tabs, string.format('%d: %s', i, buf))
+    end
+    local choice = vim.fn.inputlist(tabs)
+    if choice > 0 then
+        vim.cmd('tabnext ' .. choice)
+    end
+end, {})
+
+vim.keymap.set("n", "<leader>tl", ":TabSelect<CR>", { desc = "Select a tab to jump to" })
+
 -- change command mode to use ;
 keymap.set("n", ";", ":", { noremap = true, silent = false, desc = "Enter command mode with ;" })
+vim.keymap.set('n', '<leader>cc', ':e $MYVIMRC<cr>');

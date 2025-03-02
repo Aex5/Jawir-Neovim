@@ -1,3 +1,4 @@
+
 return {
 	"nvim-tree/nvim-tree.lua",
 	dependencies = "nvim-tree/nvim-web-devicons",
@@ -10,61 +11,81 @@ return {
 
 		nvimtree.setup({
 			view = {
-				width = 35,
-				relativenumber = false,
+				width = 45, -- mengubah lebar view sesuai permintaan baru
+        side = "left"
 			},
-			-- change folder arrow icons
 			renderer = {
+				root_folder_label = false, -- hide root directory at the top
 				indent_markers = {
-					enable = true,
+					enable = true, -- enable folder level guide
+					icons = {
+						corner = "└",
+						edge = "│",
+						item = "│",
+						bottom = "─",
+						none = " ",
+					},
 				},
 				icons = {
 					glyphs = {
 						folder = {
-							arrow_closed = "⎼", -- arrow when folder is closed
-							arrow_open = "⌜", -- arrow when folder is open
+							arrow_closed = "+", -- arrow when folder is closed
+							arrow_open = "-", -- arrow when folder is open
+							default = "",
+							open = "",
+							empty = "",
+							empty_open = "",
 						},
 						git = {
-							unstaged = "✗",
-							staged = "✓",
+							unstaged = "",
+							staged = "",
 							unmerged = "",
-							renamed = "➜",
-							untracked = "✎",
-							deleted = "",
-							ignored = "◌",
+							renamed = "󰏫",
+							untracked = "◌",
+							deleted = "",
+							ignored = "󰘓",
 						},
 					},
+					padding = " ",
 				},
 			},
-			-- disable window_picker for
-			-- explorer to work well with
-			-- window splits
 			actions = {
 				open_file = {
+					quit_on_open = true,
 					window_picker = {
-						enable = false,
+						enable = false, -- Disable window picker
 					},
 				},
 			},
-			filters = {
-				custom = { ".DS_Store" },
+			update_focused_file = {
+				enable = true,
+				update_root = true,
 			},
+			filters = {
+				dotfiles = false,
+				custom = { ".DS_Store" }, -- filter .DS_Store file
+			},
+			sync_root_with_cwd = true,
+			respect_buf_cwd = true,
 			git = {
-				ignore = false,
+				ignore = false, -- show git status
 			},
 		})
 
-		-- set keymaps
-		local keymap = vim.keymap -- for conciseness
+		-- Keymaps
+		local keymap = vim.keymap
 
-		keymap.set("n", "<leader>ee", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle file explorer" }) -- toggle file explorer
-		keymap.set(
-			"n",
-			"<leader>ef",
-			"<cmd>NvimTreeFindFileToggle<CR>",
-			{ desc = "Toggle file explorer on current file" }
-		) -- toggle file explorer on current file
-		keymap.set("n", "<leader>ec", "<cmd>NvimTreeCollapse<CR>", { desc = "Collapse file explorer" }) -- collapse file explorer
-		keymap.set("n", "<leader>er", "<cmd>NvimTreeRefresh<CR>", { desc = "Refresh file explorer" }) -- refresh file explorer
+		-- Toggle NvimTree with leader ee
+		keymap.set("n", "<leader>ee", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle file explorer" })
+
+		-- Toggle NvimTree for current file with leader ef
+		keymap.set("n", "<leader>ef", "<cmd>NvimTreeFindFileToggle<CR>", { desc = "Toggle file explorer on current file" })
+
+		-- Collapse NvimTree with leader ec
+		keymap.set("n", "<leader>ec", "<cmd>NvimTreeCollapse<CR>", { desc = "Collapse file explorer" })
+
+		-- Refresh NvimTree with leader er
+		keymap.set("n", "<leader>er", "<cmd>NvimTreeRefresh<CR>", { desc = "Refresh file explorer" })
 	end,
 }
+

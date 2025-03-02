@@ -4,23 +4,18 @@ return {
   build = ":TSUpdate",
   dependencies = {
     "windwp/nvim-ts-autotag",
+    "nvim-treesitter/nvim-treesitter-context",
   },
   config = function()
-    -- import nvim-treesitter plugin
+    -- Import Treesitter
     local treesitter = require("nvim-treesitter.configs")
-
-    -- configure treesitter
-    treesitter.setup({ -- enable syntax highlighting
+    -- Setup Treesitter
+    treesitter.setup({
       highlight = {
         enable = true,
       },
-      -- enable indentation
       indent = { enable = true },
-      -- enable autotagging (w/ nvim-ts-autotag plugin)
-      autotag = {
-        enable = true,
-      },
-      -- ensure these language parsers are installed
+      autotag = { enable = true },
       ensure_installed = {
         "json",
         "javascript",
@@ -42,6 +37,8 @@ return {
         "query",
         "vimdoc",
         "c",
+        "php",
+        "blade",
       },
       incremental_selection = {
         enable = true,
@@ -53,5 +50,21 @@ return {
         },
       },
     })
+
+    -- Setup Treesitter Context
+    require("treesitter-context").setup({
+      enable = false,
+      multiwindow = false,
+      max_lines = 0, -- No limit
+      min_window_height = 0, -- No limit
+      line_numbers = true,
+      multiline_threshold = 20,
+      trim_scope = "outer",
+      mode = "cursor",
+      separator = nil,
+      zindex = 20,
+      on_attach = nil,
+    })
   end,
 }
+

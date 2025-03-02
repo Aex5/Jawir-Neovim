@@ -1,9 +1,19 @@
+
 return {
   "lewis6991/gitsigns.nvim",
   event = { "BufReadPre", "BufNewFile" },
   opts = {
+    current_line_blame = true,
+    current_line_blame_opts = {
+      delay = 500,
+      virt_text_pos = "eol",
+    },
+    current_line_blame_formatter = "<author>, <author_time:%Y-%m-%d> - <summary>",
     on_attach = function(bufnr)
       local gs = package.loaded.gitsigns
+
+      -- Custom warna Git Blame
+      vim.cmd([[highlight GitSignsCurrentLineBlame guifg=#aaaaaa gui=italic]])
 
       local function map(mode, l, r, desc)
         vim.keymap.set(mode, l, r, { buffer = bufnr, desc = desc })
@@ -45,3 +55,4 @@ return {
     end,
   },
 }
+

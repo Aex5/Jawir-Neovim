@@ -35,6 +35,7 @@ return {
 				"pyright", -- Python server
 				"intelephense", -- PHP server
 			},
+			automatic_installation = true,
 		})
 
 		-- Install additional tools

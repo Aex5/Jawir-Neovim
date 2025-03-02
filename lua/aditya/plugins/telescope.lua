@@ -40,6 +40,7 @@ return {
 			pickers = {
 				find_files = {
 					previewer = true, -- disable preview for find_files
+          hidden = true,
 				},
 				live_grep = {
 					previewer = false, -- disable preview for live_grep
